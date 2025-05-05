@@ -95,6 +95,3 @@ class CombatUpgrade:
 
 class Opportunity:
     pass
-
-class Edgerunner:
-    pass
