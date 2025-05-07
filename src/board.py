@@ -92,6 +92,3 @@ class TheNet:
 
 class CombatUpgrade:
     pass
-
-class Opportunity:
-    pass
