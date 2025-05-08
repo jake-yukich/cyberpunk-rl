@@ -182,7 +182,77 @@ RONIN_UPGRADES = Opportunity(
 
 # WEAPON
 # ------------------------------------------------------------
+ARMING_THE_CITY = Opportunity(
+    name="Arming the City",
+    type=OpportunityType.WEAPON,
+    requirement="",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, gain either 2 📦, 2 Eurodollars, or 2 Street Cred.",
+    cost=3
+)
 
+BOOTLEG_ARASAKA_TECH = Opportunity(
+    name="Bootleg Arasaka Tech",
+    type=OpportunityType.WEAPON,
+    requirement="DOMINANCE in: WATSON.",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, gain either 1 📦 or 1 Eurodollar.",
+    cost=1
+)
+
+BUDGET_ARMS_DISPOSABLES = Opportunity(
+    name="Budget Arms Disposables",
+    type=OpportunityType.WEAPON,
+    requirement="DOMINANCE in: HEYWOOD.",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, gain 1 Eurodollar.",
+    cost=1
+)
+
+CORP_PROTOTYPES = Opportunity(
+    name="Corp Prototypes",
+    type=OpportunityType.WEAPON,
+    requirement="DOMINANCE in: CITY CENTER.",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, gain either 1 📦, 1 Eurodollar, or 1 Street Cred.",
+    cost=1
+)
+
+IRON_TO_THE_MASSES = Opportunity(
+    name="Iron to the Masses",
+    type=OpportunityType.WEAPON,
+    requirement="",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, gain either 1 📦, 1 Eurodollar, or 1 Street Cred.",
+    cost=2
+)
+
+MILITECH_SMART_GUNS = Opportunity(
+    name="Militech Smart Guns",
+    type=OpportunityType.WEAPON,
+    requirement="DOMINANCE in: WESTBROOK.",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, gain 1 Eurodollar or 1 Street Cred.",
+    cost=1
+)
+
+NOKOTA_WEAPONS_SHIPMENT = Opportunity(
+    name="Nokota Weapons Shipment",
+    type=OpportunityType.WEAPON,
+    requirement="DOMINANCE in: PACIFICA.",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, gain either 1 📦 or 1 Street Cred.",
+    cost=1
+)
+
+SMUGGLING_OPERATION = Opportunity(
+    name="Smuggling Operation",
+    type=OpportunityType.WEAPON,
+    requirement="DOMINANCE in: SANTO DOMINGO.",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, gain 1 📦.",
+    cost=1
+)
+
+UNPREDICTABLE_SMART_GUN = Opportunity(
+    name="Unpredictable Smart Gun",
+    type=OpportunityType.WEAPON,
+    requirement="PRESENCE in: At least 2 DISTRICTS.",
+    effect="Gain 1 Street Cred for each WEAPON DEAL you have. Then, you may hire an Edgerunner without paying their cost.",
+    cost=3
+)
 
 # SPECIAL
 # ------------------------------------------------------------
