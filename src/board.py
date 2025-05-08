@@ -89,6 +89,3 @@ class OpportunitiesMarket(Market):
 
 class TheNet:
     pass
-
-class CombatUpgrade:
-    pass
