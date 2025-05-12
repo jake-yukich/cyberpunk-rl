@@ -3,9 +3,9 @@ Opportunities are underground deals that Gangs can fulfill.
 They cost Contraband 📦 to be seized and often have specific requirements.
 
 There are 3 main types of opportunities:
-    - BRAINDANCE
-    - CYBERWARE
-    - WEAPON
+    - BRAINDANCE DEALS
+    - CYBERWARE DEALS
+    - WEAPON DEALS
 """
 from enum import Enum, auto
 
@@ -32,7 +32,7 @@ class Opportunity:
     def seize(self):
         pass
 
-# BRAINDANCE
+# BRAINDANCE DEALS
 # ------------------------------------------------------------
 CORPORATE_ELITE_BD = Opportunity(
     name="Corporate Elite BD",
@@ -106,7 +106,7 @@ XBD_DEALER = Opportunity(
     cost=1
 )
 
-# CYBERWARE
+# CYBERWARE DEALS
 # ------------------------------------------------------------
 BACK_ALLEY_RIPPERDOC = Opportunity(
     name="Back Alley Ripperdoc",
@@ -180,7 +180,7 @@ RONIN_UPGRADES = Opportunity(
     cost=2
 )
 
-# WEAPON
+# WEAPON DEALS
 # ------------------------------------------------------------
 ARMING_THE_CITY = Opportunity(
     name="Arming the City",
