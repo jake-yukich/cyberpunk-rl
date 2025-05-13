@@ -1,4 +1,5 @@
 """TODO: units"""
+from enum import Enum, auto
 
 class Unit:
     pass
@@ -8,8 +9,14 @@ class Unit:
 
 # # ... techies and other units...
 
+class EdgerunnerType(Enum):
+    TECHIE = auto()
+    SOLO = auto()
+    SPECIALIST = auto()
+    NETRUNNER = auto()
+
 class Edgerunner(Unit):
-    def __init__(self, name: str, type: str, cost: int, passive: str, trigger: str, effect: str):
+    def __init__(self, name: str, type: EdgerunnerType, cost: int, passive: str, trigger: str, effect: str):
         self.name = name
         self.type = type
         self.cost = cost # in eurodollars
@@ -25,7 +32,7 @@ class Edgerunner(Unit):
 
 JUDY_ALVAREZ = Edgerunner(
     name="Judy Alvarez",
-    type="Techie Edgerunner",
+    type=EdgerunnerType.TECHIE,
     cost=1,
     passive="Place a Drone when put in play.",
     trigger="Use the Techie Action disc.",
@@ -34,7 +41,7 @@ JUDY_ALVAREZ = Edgerunner(
 
 VIKTOR_VEKTOR = Edgerunner(
     name="Viktor Vektor",
-    type="Techie Edgerunner",
+    type=EdgerunnerType.TECHIE,
     cost=1,
     passive="Place a Drone when put in play.",
     trigger="Use the Combat Upgrade Action disc.",
@@ -43,7 +50,7 @@ VIKTOR_VEKTOR = Edgerunner(
 
 JACKIE_WELLES = Edgerunner(
     name="Jackie Welles",
-    type="Solo Edgerunner",
+    type=EdgerunnerType.SOLO,
     cost=1,
     passive="",
     trigger="Involved in a firefight you initiated.",
@@ -52,7 +59,7 @@ JACKIE_WELLES = Edgerunner(
 
 RIVER_WARD = Edgerunner(
     name="River Ward",
-    type="Solo Edgerunner",
+    type=EdgerunnerType.SOLO,
     cost=1,
     passive="",
     trigger="Involved in a firefight with at least 1 other friendly Solo.",
@@ -61,7 +68,7 @@ RIVER_WARD = Edgerunner(
 
 GORO_TAKEMURA = Edgerunner(
     name="Goro Takemura",
-    type="Solo Edgerunner",
+    type=EdgerunnerType.SOLO,
     cost=2,
     passive="",
     trigger="Move into a District with an opposing unit.",
@@ -70,7 +77,7 @@ GORO_TAKEMURA = Edgerunner(
 
 JOHNNY_SILVERHAND = Edgerunner(
     name="Johnny Silverhand",
-    type="Solo Edgerunner",
+    type=EdgerunnerType.SOLO,
     cost=2,
     passive="When hired, replace 1 friendly Basic unit in play with Johnny Silverhand. Remove the replaced unit from the game.",
     trigger="at the start of your ACTIVATE.",
@@ -79,7 +86,7 @@ JOHNNY_SILVERHAND = Edgerunner(
 
 T_BUG = Edgerunner(
     name="T-Bug",
-    type="Netrunner Edgerunner",
+    type=EdgerunnerType.NETRUNNER,
     cost=2,
     passive="",
     trigger="At the start of a Netrun.",
@@ -88,7 +95,7 @@ T_BUG = Edgerunner(
 
 NIX = Edgerunner(
     name="Nix",
-    type="Netrunner Edgerunner",
+    type=EdgerunnerType.NETRUNNER,
     cost=2,
     passive="",
     trigger="Stop on a RED step at the end of a Netrun.",
@@ -97,7 +104,7 @@ NIX = Edgerunner(
 
 KERRY_EURODYNE = Edgerunner(
     name="Kerry Eurodyne",
-    type="Specialist Edgerunner",
+    type=EdgerunnerType.SPECIALIST,
     cost=2,
     passive="Kerry may move each time you gain Street Cred during an ACTIVATE.",
     trigger="At the end of your RECLAIM.",
@@ -106,7 +113,7 @@ KERRY_EURODYNE = Edgerunner(
 
 ROGUE_AMENDIARES = Edgerunner(
     name="Rogue Amendiares",
-    type="Specialist Edgerunner",
+    type=EdgerunnerType.SPECIALIST,
     cost=2,
     passive="Once per turn, Rogue may move when another friendly unit enters a Fixer POI.",
     trigger="At the end of your RECLAIM.",
