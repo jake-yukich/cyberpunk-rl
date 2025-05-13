@@ -1,24 +1,61 @@
-"""TODO: units"""
+"""Gang units."""
 from enum import Enum, auto
+from gangs import Gang
 
-class Unit:
-    pass
-
-# class Solo(Unit):
-#     pass
-
-# # ... techies and other units...
-
-class EdgerunnerType(Enum):
+class UnitType(Enum):
     TECHIE = auto()
     SOLO = auto()
     SPECIALIST = auto()
     NETRUNNER = auto()
+    DRONE = auto()
+
+class Unit:
+    def __init__(self, type: UnitType, gang: Gang):
+        self.type = type
+        self.gang = gang
+    
+    def move(self):
+        pass
+
+class Solo(Unit):
+    """Solos initiate firefights to remove opposing units."""
+    def __init__(self):
+        super().__init__(UnitType.SOLO)
+
+class Techie(Unit):
+    """Techies build drones, seize opportunities, and hire Edgerunners."""
+    def __init__(self):
+        super().__init__(UnitType.TECHIE)
+    
+    def _build_drone(self):
+        pass
+
+    def seize_opportunity(self):
+        pass
+
+    def hire_edgerunner(self):
+        pass
+
+class Drone(Unit):
+    """
+    Drones are special units associated with Techies...
+    TODO
+    """
+    def __init__(self):
+        super().__init__(UnitType.DRONE)
+
+class Netrunner(Unit):
+    """Netrunners attempt netruns for corporate secrets 📁 and other effects."""
+    def __init__(self):
+        super().__init__(UnitType.NETRUNNER)
+
+    def netrun(self):
+        pass
 
 class Edgerunner(Unit):
-    def __init__(self, name: str, type: EdgerunnerType, cost: int, passive: str, trigger: str, effect: str):
+    def __init__(self, name: str, type: UnitType, cost: int, passive: str, trigger: str, effect: str):
+        super().__init__(type)
         self.name = name
-        self.type = type
         self.cost = cost # in eurodollars
         self.gang = None
         self.district = None
@@ -32,7 +69,7 @@ class Edgerunner(Unit):
 
 JUDY_ALVAREZ = Edgerunner(
     name="Judy Alvarez",
-    type=EdgerunnerType.TECHIE,
+    type=UnitType.TECHIE,
     cost=1,
     passive="Place a Drone when put in play.",
     trigger="Use the Techie Action disc.",
@@ -41,7 +78,7 @@ JUDY_ALVAREZ = Edgerunner(
 
 VIKTOR_VEKTOR = Edgerunner(
     name="Viktor Vektor",
-    type=EdgerunnerType.TECHIE,
+    type=UnitType.TECHIE,
     cost=1,
     passive="Place a Drone when put in play.",
     trigger="Use the Combat Upgrade Action disc.",
@@ -50,7 +87,7 @@ VIKTOR_VEKTOR = Edgerunner(
 
 JACKIE_WELLES = Edgerunner(
     name="Jackie Welles",
-    type=EdgerunnerType.SOLO,
+    type=UnitType.SOLO,
     cost=1,
     passive="",
     trigger="Involved in a firefight you initiated.",
@@ -59,7 +96,7 @@ JACKIE_WELLES = Edgerunner(
 
 RIVER_WARD = Edgerunner(
     name="River Ward",
-    type=EdgerunnerType.SOLO,
+    type=UnitType.SOLO,
     cost=1,
     passive="",
     trigger="Involved in a firefight with at least 1 other friendly Solo.",
@@ -68,7 +105,7 @@ RIVER_WARD = Edgerunner(
 
 GORO_TAKEMURA = Edgerunner(
     name="Goro Takemura",
-    type=EdgerunnerType.SOLO,
+    type=UnitType.SOLO,
     cost=2,
     passive="",
     trigger="Move into a District with an opposing unit.",
@@ -77,7 +114,7 @@ GORO_TAKEMURA = Edgerunner(
 
 JOHNNY_SILVERHAND = Edgerunner(
     name="Johnny Silverhand",
-    type=EdgerunnerType.SOLO,
+    type=UnitType.SOLO,
     cost=2,
     passive="When hired, replace 1 friendly Basic unit in play with Johnny Silverhand. Remove the replaced unit from the game.",
     trigger="at the start of your ACTIVATE.",
@@ -86,7 +123,7 @@ JOHNNY_SILVERHAND = Edgerunner(
 
 T_BUG = Edgerunner(
     name="T-Bug",
-    type=EdgerunnerType.NETRUNNER,
+    type=UnitType.NETRUNNER,
     cost=2,
     passive="",
     trigger="At the start of a Netrun.",
@@ -95,7 +132,7 @@ T_BUG = Edgerunner(
 
 NIX = Edgerunner(
     name="Nix",
-    type=EdgerunnerType.NETRUNNER,
+    type=UnitType.NETRUNNER,
     cost=2,
     passive="",
     trigger="Stop on a RED step at the end of a Netrun.",
@@ -104,7 +141,7 @@ NIX = Edgerunner(
 
 KERRY_EURODYNE = Edgerunner(
     name="Kerry Eurodyne",
-    type=EdgerunnerType.SPECIALIST,
+    type=UnitType.SPECIALIST,
     cost=2,
     passive="Kerry may move each time you gain Street Cred during an ACTIVATE.",
     trigger="At the end of your RECLAIM.",
@@ -113,7 +150,7 @@ KERRY_EURODYNE = Edgerunner(
 
 ROGUE_AMENDIARES = Edgerunner(
     name="Rogue Amendiares",
-    type=EdgerunnerType.SPECIALIST,
+    type=UnitType.SPECIALIST,
     cost=2,
     passive="Once per turn, Rogue may move when another friendly unit enters a Fixer POI.",
     trigger="At the end of your RECLAIM.",
