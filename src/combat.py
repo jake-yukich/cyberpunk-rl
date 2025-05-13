@@ -1,5 +1,4 @@
-"""
-"""
+"""Combat cards. Combat cards are used during firefights. They always have a firepower and a street cred condition."""
 from enum import Enum, auto
 
 class CombatUpgrade:
