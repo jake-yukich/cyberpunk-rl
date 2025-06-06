@@ -5,7 +5,9 @@ import random
 
 from board import Board
 from gangs import Gang, TygerClaws, Valentinos, VoodooBoys, Maelstrom, Action
-from units import Solo, Techie, Netrunner, Drone, Hideout
+from units import Solo, Techie, Netrunner, Drone, Hideout, EDGERUNNERS_DECK
+from opportunities import OPPORTUNITIES_DECK
+from markets import CombatUpgradeMarket, EdgerunnersMarket, OpportunitiesMarket
 
 class GamePhase(Enum):
     ACTIVATE = auto()
@@ -174,6 +176,11 @@ class Game:
         self.round: int = 1
         self.num_rounds = num_rounds # Max rounds
         self.game_over: bool = False
+        
+        # Initialize markets
+        self.opportunities_market = OpportunitiesMarket()
+        self.edgerunners_market = EdgerunnersMarket()
+        self.combat_upgrade_market = CombatUpgradeMarket()
 
         self._setup_game()
 
@@ -238,12 +245,22 @@ class Game:
             
             print(f"Placed {gang.name} units in {gang.starting_district}: 1 hideout, 1 solo, 1 techie, 1 drone, 1 netrunner")
         
-        # Populate Markets - simplified
-        print("Populating markets (simplified)...")
-        # self.board.opportunities_market.deck = [Opportunity(...) , ...] # Populate with actual Opportunity objects
-        # self.board.combat_upgrade_market.deck = [CombatUpgrade(...), ...]
-        # self.board.edgerunners_market.deck = [Edgerunner(...), ...]
-        # random.shuffle(self.board.opportunities_market.deck) # etc. for other markets
+        # Populate Markets
+        print("Populating markets...")
+        
+        # Initialize Opportunities deck
+        self.opportunities_market.deck = OPPORTUNITIES_DECK.copy()
+        self.opportunities_market.shuffle_deck()
+        self.opportunities_market.draw_to_face_up(3)
+        
+        # Initialize Edgerunners deck  
+        self.edgerunners_market.deck = EDGERUNNERS_DECK.copy()
+        self.edgerunners_market.shuffle_deck()
+        self.edgerunners_market.draw_to_face_up(3)
+        
+        # Combat upgrade market will be populated later when we implement combat cards
+        print(f"Opportunities Market: {len(self.opportunities_market.face_up)} cards face up")
+        print(f"Edgerunners Market: {len(self.edgerunners_market.face_up)} cards face up")
 
         print("Game setup complete.")
 

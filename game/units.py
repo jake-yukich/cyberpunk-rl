@@ -191,3 +191,10 @@ class Hideout(Unit):
     def move(self, target_district, game_board):
         print(f"Hideouts cannot move!")
         return False
+
+# Full deck of all edgerunner cards
+EDGERUNNERS_DECK = [
+    JUDY_ALVAREZ, VIKTOR_VEKTOR, JACKIE_WELLES, RIVER_WARD,
+    GORO_TAKEMURA, JOHNNY_SILVERHAND, T_BUG, NIX,
+    KERRY_EURODYNE, ROGUE_AMENDIARES
+]
