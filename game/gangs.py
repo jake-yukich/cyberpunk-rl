@@ -22,6 +22,7 @@ class Gang:
           self.techies = []
           self.drones = []
           self.netrunners = []
+          self.hideouts = []  # List of Hideout objects owned by this gang
 
           self.street_cred = 0
           self.eurodollars = 0
@@ -37,11 +38,10 @@ class Gang:
                     Action.BUILD_HIDEOUT,
                     Action.ACTION_WILDCARD,
                },
-               "reclaim": {},
+               "reclaim": set(),
           }
 
           self.abilities = {}
-          self.hideouts = {}
 
 class TygerClaws(Gang):
      def __init__(self):

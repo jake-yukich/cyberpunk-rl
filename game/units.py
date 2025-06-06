@@ -8,24 +8,51 @@ class UnitType(Enum):
     SPECIALIST = auto()
     NETRUNNER = auto()
     DRONE = auto()
+    HIDEOUT = auto()
 
 class Unit:
     def __init__(self, type: UnitType, gang: Gang):
         self.type = type
         self.gang = gang
+        self.district = None  # Current district location
     
-    def move(self):
-        pass
+    def move(self, target_district, game_board):
+        """Move unit to target district if move is valid."""
+        if self.type == UnitType.HIDEOUT:
+            print(f"Hideouts cannot move!")
+            return False
+            
+        current_district_name = self.district
+        if current_district_name is None:
+            print(f"Unit has no current district!")
+            return False
+            
+        # Check if target district is adjacent
+        if target_district not in game_board.neighbors[current_district_name]:
+            print(f"Cannot move from {current_district_name} to {target_district} - not adjacent!")
+            return False
+            
+        # Remove from current district
+        current_district = game_board.districts[current_district_name]
+        current_district.units.remove(self)
+        
+        # Add to target district
+        target_district_obj = game_board.districts[target_district]
+        target_district_obj.units.append(self)
+        self.district = target_district
+        
+        print(f"{self.gang.name} {self.type.name} moved from {current_district_name} to {target_district}")
+        return True
 
 class Solo(Unit):
     """Solos initiate firefights to remove opposing units."""
-    def __init__(self):
-        super().__init__(UnitType.SOLO)
+    def __init__(self, gang: Gang):
+        super().__init__(UnitType.SOLO, gang)
 
 class Techie(Unit):
     """Techies build drones, seize opportunities, and hire Edgerunners."""
-    def __init__(self):
-        super().__init__(UnitType.TECHIE)
+    def __init__(self, gang: Gang):
+        super().__init__(UnitType.TECHIE, gang)
     
     def _build_drone(self):
         pass
@@ -41,23 +68,22 @@ class Drone(Unit):
     Drones are special units associated with Techies...
     TODO
     """
-    def __init__(self):
-        super().__init__(UnitType.DRONE)
+    def __init__(self, gang: Gang):
+        super().__init__(UnitType.DRONE, gang)
 
 class Netrunner(Unit):
     """Netrunners attempt netruns for corporate secrets 📁 and other effects."""
-    def __init__(self):
-        super().__init__(UnitType.NETRUNNER)
+    def __init__(self, gang: Gang):
+        super().__init__(UnitType.NETRUNNER, gang)
 
     def netrun(self):
         pass
 
 class Edgerunner(Unit):
-    def __init__(self, name: str, type: UnitType, cost: int, passive: str, trigger: str, effect: str):
-        super().__init__(type)
+    def __init__(self, name: str, type: UnitType, cost: int, passive: str, trigger: str, effect: str, gang: Gang = None):
+        super().__init__(type, gang)
         self.name = name
         self.cost = cost # in eurodollars
-        self.gang = None
         self.district = None
 
         self.passive = passive
@@ -156,3 +182,12 @@ ROGUE_AMENDIARES = Edgerunner(
     trigger="At the end of your RECLAIM.",
     effect="If you control at least 1 Fixer POI, gain 2 Street Cred.",
 )
+
+class Hideout(Unit):
+    """Hideouts are special units that gangs can build in districts."""
+    def __init__(self, gang: Gang):
+        super().__init__(UnitType.HIDEOUT, gang)
+    
+    def move(self, target_district, game_board):
+        print(f"Hideouts cannot move!")
+        return False
