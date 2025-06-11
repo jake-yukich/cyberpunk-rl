@@ -10,4 +10,4 @@ When is complex game design also good game design? When is it not? Is *Cyberpunk
 
 Is it fun?
 
-I, like any reasonable person would, attempt to ~~get my money's worth~~ answer these questions (and more) with simulations and reinforcement learning.
+I attempt, like any reasonable person would, to ~~get my money's worth~~ answer these questions (and more) with simulations and reinforcement learning.
